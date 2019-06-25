@@ -8,9 +8,8 @@ from Productos import Productos
 #modulos externos.
 import os
 import time
-from tqdm import tqdm
+#from tqdm import tqdm
 from getpass import getpass
-
 
 nombre=input('Tu Nombre: ')
 codigo=int(getpass('Tu Codigo: '))
@@ -19,13 +18,14 @@ codigo=int(getpass('Tu Codigo: '))
 emp=Usuarios(nombre,codigo)
 clien=Cliente()
 compra=Compras()
+venta=VentaProductos()
 
 def loggin(func):
     def verificar(Nombre,passw):
         if emp.SetPassword== passw and emp.SetUsuario == Nombre:
             print('Welcome at the platform')
-            for i in tqdm(range(10)):
-                time.sleep(2)
+            #for i in tqdm(range(10)):
+            #    time.sleep(2)
             return True
         else:
             print('sorry,but cant sing up')
@@ -38,10 +38,7 @@ def loggin(func):
 def registro(Usu,passw):
     return Usu,passw
 
-##----------------------Clientes------------------
-# Ingresa datos del cliente, crea cliente, visualizar cliene creado,elimina contenido,menu cliente
-#  Ingresa datos a modificar,Modificar datos cliente, visualizar cliente Modificado,elimina contenido,menu cliente
-#  Ingresa datos Eliminar,Eliminar datos cliente, visualizar cliente Eliminado,elimina contenido,menu cliente
+##----------------------------Clientes--------------------------
 def Moduloclientes():
 
     try:
@@ -80,6 +77,7 @@ def Moduloclientes():
         print('*'*100)    
         print('Cerrando programa'.center(20))
         print('*'*100)
+
 ##----------------------------Comprar-----------------------------
 def ModuloCompras():
     try:
@@ -127,7 +125,7 @@ def ModuloProdutos():
                 cantidad=input('Dijiste la Categoria del producto: ')
                 producto=Productos(nombre,cantidad)
                 producto.agre_productos()
-            producto.agregartxt()
+                time.sleep(3)
         elif respuesta == 2:
             NombreViejo=input('Nombre del Producto que Deseas Modificar: ')
             nombreNuevo=input('Ingrese el Nuevo nombre: ')
@@ -138,6 +136,7 @@ def ModuloProdutos():
         elif respuesta ==4:
             producto=Productos()
             producto.ver_todosproductos()
+            time.sleep(5)
         elif respuesta ==5:
             os.system('cls')
         ValicarCargoMenu() # ojo revisar
@@ -149,17 +148,21 @@ def ModuloProdutos():
 
 ##----------------------------Ventas-------------------------------
 def ModuloVentas():
-    ventas=VentaProductos()
+    #Factur=factura(222,333,111)
     try:
         while True:
             try:
                 valor=str
                 while valor not in ('S','s'):
                     valor=input('Producto a Buscar: ')
-                    ventas.agre_productos(valor)
+                    venta.Agregar_Venta(valor)
+                respuesta=input('Desea generar y visualizar la factura: ')
+                if respuesta in ('S','s'):
+                    ModuloFactura()
+                else:
+                    ventas.verCesta()   
+                time.sleep(30)
                 os.system('cls')
-                ventas.verCesta()
-                time.sleep(3)
                 break
             except ValueError as e:
                 print(f'ADVERTENCIA : Valor ingresado Incorrecto se lanzo la excepcion de tipo: {e}')
@@ -170,27 +173,50 @@ def ModuloVentas():
         print('*'*100)    
         print('Cerrando programa'.center(20))
         print('*'*100)
-
     menuAdministrador()
 
-    ##----------------------------Empleado------------------------------
+##----------------------------Factura-------------------------------
+def ModuloFactura():
+    factura_=factura(2222,333,444)
+    ncliente=input('Ingrese el nombre del cliente: ')
+    p=clien.buscarCliente(ncliente) 
+    if p is False:
+        respuesta=input("El cliente no ha sido registrado en el sistema, por tal motivo  el cliente saldra como Generico en la factura desea aceptar (S|N): ")
+        if respuesta in ('S','Si','s','y','Yes'):
+            factura_.getCabecera('Generico')
+    else:
+        factura_.getCabecera(ncliente)
+    factura_.getdetalle()
+
+##----------------------------Usuario------------------------------
 def ModuloUsuario():
     pass
 
-#------------------------------------------------Menus de Roles a Desempeñar en el sistema----------------------------------.
-##-----------------------------------------------Empleados------------------------------------------------------------------.
-# Ingresa datos del Empleados, crea Empleados, visualizar cliene creado,elimina contenido,menu Empleados
-#  Ingresa datos a modificar,Modificar datos Empleados, visualizar Empleados Modificado,elimina contenido,menu Empleados
-#  Ingresa datos Eliminar,Eliminar datos Empleados, visualizar Empleados Eliminado,elimina contenido,menu Empleados
+##----------------------------Validacion del Rol---------------------
+def ValicarCargoMenu():
+    os.system('cls')
+    print(f'Atendido por: {emp.SetUsuario} \t\t\t Cargo: {emp.Cargo}')
+    if emp.Cargo in ('ADMINISTRADOR','ANALISTA'):
+        MenuOpcionesAdministrador(menuAdministrador())
+    else:
+        MenuOpciones(menuEmpleado())
+
+#-----------------------------Menus de Roles a Desempeñar en el sistema----
+
+##----------------------------Empleados------------------------------------.
 def menuEmpleado():
     print('''**********> 1)Clientes''')
-    print('''**********> 3)Ventas''')
+    print('''**********> 2)Ventas''')
     opt=int(input('Dijite una Opcion a realizar: '))
     return opt
-##-----------------------------------------------Administrador-----------------------------------------------------------------
-# Ingresa datos del Empleados, crea Empleados, visualizar cliene creado,elimina contenido,menu Empleados
-#  Ingresa datos a modificar,Modificar datos Empleados, visualizar Empleados Modificado,elimina contenido,menu Empleados
-#  Ingresa datos Eliminar,Eliminar datos Empleados, visualizar Empleados Eliminado,elimina contenido,menu Empleados
+
+def MenuOpciones(opt):
+    if opt == 1:
+        Moduloclientes()
+    elif opt==2:
+        ModuloCompras()
+
+##----------------------------Administrador-----------------------------------
 def menuAdministrador():
     try:
         while True:
@@ -214,16 +240,8 @@ def menuAdministrador():
         print('*'*100)    
         print('Cerrando programa'.center(20))
         print('*'*100)
-##------------------------------------------------Validacion del Rol---------------------------------------------------------------------
-def ValicarCargoMenu():
-    os.system('cls')
-    print(f'Atendido por: {emp.SetUsuario} \t\t\t Cargo: {emp.Cargo}')
-    if emp.Cargo in ('ADMINISTRADOR','ANALISTA'):
-        MenuOpciones(menuAdministrador())
-    else:
-        MenuOpciones(menuEmpleado())
 
-def MenuOpciones(opt):
+def MenuOpcionesAdministrador(opt):
     if opt == 1:
         Moduloclientes()
     elif opt==2:
@@ -236,6 +254,8 @@ def MenuOpciones(opt):
         ModuloEmpleado()
     elif opt==6:
         ModuloProdutos()
+
+
 
 if registro(nombre,codigo):
     ValicarCargoMenu()

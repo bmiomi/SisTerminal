@@ -15,5 +15,3 @@ def crearArchivo(nombre):
                 archivo.write('s')
         print('archivo creado bye')
 
-
-
