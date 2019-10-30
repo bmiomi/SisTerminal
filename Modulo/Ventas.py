@@ -3,7 +3,6 @@ from .Compra import Compras
 from .config.archivos import Directorio
 from .Productos import Productos
 
-
 class VentaProductos:
 
     _Cesta_Venta=[]
@@ -31,14 +30,14 @@ class VentaProductos:
                 pv=float(i['PrecioCompra'])*12/100
                 self._Cesta_Venta.append({'producto': producto,'Cantidad':cantidad,'PV':str(pv)})
                 return True
-            else:
-                return False
 
     def json(self):
         import time
         dicts={
-               'Venta N°:':0,'Fecha:':time.strftime("%d/%m/%y"),
-               'Cliente:':'carlos','lista de productos':self._Cesta_Venta,
+               'Venta N°:':0,
+               'Fecha:':time.strftime("%d/%m/%y"),
+               'Cliente:':'carlos',
+               'lista de productos':self._Cesta_Venta,
                }         
         p=[]
         r=[]

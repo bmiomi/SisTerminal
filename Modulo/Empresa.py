@@ -13,13 +13,13 @@ from .Factura import factura
 
 
 def loggin(func):
-    
     def verificar(self, Objpersonal):
         if Objpersonal.validar(input('Ingresa tu Usuario:'), getpass('Ingresa tus credenciales:')):
           print('Welcome at the platform')
           #for i in tqdm(range(10)):
-      #        time.sleep(2)        
-          return True,Objpersonal
+          #   time.sleep(2)
+          print(f'Atendido por: {Objpersonal.SetUsuario} \t\t\t Cargo: {Objpersonal.Cargo}')
+          return True,Objpersonal 
         else:
           print('sorry,but cant sing up')
           time.sleep(1)
@@ -27,8 +27,6 @@ def loggin(func):
           os.system('cls')
     return verificar
     
-
-
 class Empresa():
 
   def __init__(self, nombreE):
@@ -58,7 +56,7 @@ class Empresa():
              '3':self.objCliente.Remover_Cliente,
              '4':self.objCliente.Buscar_Cliente,
              '5':self.objCliente.Ver_Clientes,
-             '6':self.ValicarCargoMenu
+             '6':self.ValidarCargoMenu
          }
          
          valor=opcionesCliente.get(OptCliente)
@@ -74,8 +72,8 @@ class Empresa():
          print('*'*100)
          print('Cerrando programa'.center(20))
          print('*'*100)
+ 
  # ----------------------------Prductos-----------------------------
-
   def ModuloProdutos(self):
      try:
          while True:
@@ -110,14 +108,14 @@ class Empresa():
              time.sleep(5)
          elif respuesta == 5:
              os.system('cls')
-         self.ValicarCargoMenu(i[1])  # ojo revisar
+         self.ValidarCargoMenu(i[1])  # ojo revisar
      except KeyboardInterrupt:
          print('\n')
          print('*'*100)
          print('Cerrando programa'.center(20))
          print('*'*100)
- # ----------------------------Comprar-----------------------------
 
+ # ----------------------------Comprar-----------------------------
   def ModuloCompras(self):
      try:
          while True:
@@ -140,14 +138,14 @@ class Empresa():
              return re()           
          time.sleep(3)
          os.system('cls')
-         self.ValicarCargoMenu(i[1])
+         self.ValidarCargoMenu(i[1])
      except KeyboardInterrupt:
          print('\n')
          print('*'*100)
          print('Cerrando programa'.center(20))
          print('*'*100)
- # ----------------------------Ventas-------------------------------
 
+ # ----------------------------Ventas-------------------------------
   def ModuloVentas(self):
      try:
              try:
@@ -175,8 +173,8 @@ class Empresa():
          print('Cerrando programa'.center(20))
          print('*'*100)
     # self.menuAdministrador()
- # ----------------------------Factura-------------------------------
 
+ # ----------------------------Factura-------------------------------
   def ModuloFactura(self):
      ObjFactura = factura(self.objCliente.get_Codigo)
      p = self.objCliente.Buscar_Cliente(self.objCliente.get_Codigo)
@@ -188,17 +186,16 @@ class Empresa():
      else:
          ObjFactura.getCabecera(p[1]['Nombre'])
      ObjFactura.getdetalle()
- # ----------------------------Usuario----------------
 
+ # ----------------------------Usuario----------------
   def ModuloUsuario(self):
      pass
  # ----------------------------Validacion del Rol---------------------
-
   @loggin
   def registro(self, Obj):
       return Obj
 
-  def ValicarCargoMenu(self,o):
+  def ValidarCargoMenu(self,o):
      os.system('cls')
      print(f'Atendido por: {o.SetUsuario} \t\t\t Cargo: {o.Cargo}')
      if o.getcargo() in ('ADMINISTRADOR', 'ANALISTA'):
@@ -274,10 +271,15 @@ class Empresa():
        listaOpciones=['Si','si','s','S']
        opcion=input('Perteneces o trabajas en nuestra empresa (si/no): ')
        if opcion in listaOpciones:
-            global i
+            #global i
             i=self.registro(Personal())
+#            i.Cargo() in ()
+            if i[1].getcargo in ('ADMINISTRADOR', 'ANALISTA'):
+                self.MenuOpcionesAdministrador(str(self.menuAdministrador()))
+            else:
+                self.MenuOpciones(self.menuEmpleado())   
             if i !=False:
-                self.ValicarCargoMenu(i[1])
+                self.ValidarCargoMenu(i[1])
 
        else:
            consulta=input('Estimado Clientes tienes registro o posees un cuenta en nuestra Empresa (Si/No): ')

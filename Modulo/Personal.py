@@ -43,6 +43,7 @@ class Personal:
                 return x
         return None
 
+    @property
     def getcargo(self):
         if self._BuscarUsuario(self.getUsuario) is not  None:
              return self._BuscarUsuario(self.getUsuario)['Cargo']
@@ -69,7 +70,7 @@ class Personal:
             self.SetPassword=str(i['contra'])
 
         if self.getUsuario is not  None and usuario==self.getUsuario  and self.getPassword is not None and contrasena==self.getPassword:
-            self.Cargo=self.getcargo()
+            self.Cargo=self.getcargo
             return True
         else:
             return False
