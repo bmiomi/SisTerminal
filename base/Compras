@@ -1,13 +1,39 @@
-Producto:queso Cantidad:30 PrecioCompra:20.0
-Producto:zanahoria Cantidad:30 PrecioCompra:13.5
-Producto:oregano Cantidad:2 PrecioCompra:1.0
-Producto:papa Cantidad:30 PrecioCompra:12
-Producto:rabano Cantidad:20 PrecioCompra:34
-Producto:Yogourt Cantidad:5 PrecioCompra:20
-Producto:Teclado Cantidad:555 PrecioCompra:7
-Producto:Muebles Cantidad:20 PrecioCompra:25
-Producto:Nevera Cantidad:30 PrecioCompra:1200
-Producto:Marihuana Cantidad:12 PrecioCompra:302
-Producto:Pepino Cantidad:60 PrecioCompra:24
-Producto:Zapote Cantidad:30 PrecioCompra:49
-Producto:leche Cantidad:30 PrecioCompra:5
+Producto:zanahoria Cantidad:30 PrecioCompra:13.5 Fecha_de_Registro_de_Compra:02/02/19-13-24-35 
+Producto:oregano Cantidad:2 PrecioCompra:1.0 Fecha_de_Registro_de_Compra:02/02/19-13-24-35
+Producto:papa Cantidad:30 PrecioCompra:12 Fecha_de_Registro_de_Compra:02/02/19-13-24-35
+Producto:rabano Cantidad:20 PrecioCompra:34 Fecha_de_Registro_de_Compra:02/02/19-13-24-35
+Producto:Yogourt Cantidad:5 PrecioCompra:20 Fecha_de_Registro_de_Compra:02/02/19-13-24-35
+Producto:Teclado Cantidad:555 PrecioCompra:7 Fecha_de_Registro_de_Compra:02/02/19-13-24-35
+Producto:Muebles Cantidad:20 PrecioCompra:25 Fecha_de_Registro_de_Compra:02/02/19-13-24-35
+Producto:Nevera Cantidad:30 PrecioCompra:1200 Fecha_de_Registro_de_Compra:02/02/19-13-24-35
+Producto:Marihuana Cantidad:12 PrecioCompra:302 Fecha_de_Registro_de_Compra:02/02/19-13-24-35
+Producto:Tomate Cantidad:30 PrecioCompra:302 Fecha_de_Registro_de_Compra:02/02/19-13-24-35
+Producto:Pepino Cantidad:60 PrecioCompra:24 Fecha_de_Registro_de_Compra:02/02/19-13-24-35
+Producto:Zapote Cantidad:30 PrecioCompra:49 Fecha_de_Registro_de_Compra:02/02/19-13-24-35
+Producto:leche Cantidad:30 PrecioCompra:5 Fecha_de_Registro_de_Compra:02/02/19-13-24-35
+Producto:queso Cantidad:22 PrecioCompra:12 Fecha_de_Registro_de_Compra:15/04/19-13-24-35
+Producto:agua Cantidad:12 PrecioCompra:0.25 Fecha_de_Registro_de_Compra:15/04/19-13-24-35
+Producto:spotyfive Cantidad:1200 PrecioCompra:35 Fecha_de_Registro_de_Compra:15/04/19-13-24-35
+Producto:guitarra Cantidad:20 PrecioCompra:25 Fecha_de_Registro_de_Compra:15/04/19-13-24-35
+Producto:abanico Cantidad:22 PrecioCompra:0.22  Fecha_de_Registro_de_Compra:15/04/19-13-24-35
+Producto:guitarra Cantidad:120 PrecioCompra:200 Fecha_de_Registro_de_Compra:15/04/19-13-24-35
+Producto:guitarra Cantidad:20 PrecioCompra:12 Fecha_de_Registro_de_Compra:15/04/19-13-24-35
+Producto:guitarra Cantidad:12 PrecioCompra:12 Fecha_de_Registro_de_Compra:03/06/19-13-24-35
+Producto:guitarra Cantidad:10 PrecioCompra:120 Fecha_de_Registro_de_Compra:03/06/19-13-24-35
+Producto:pepino Cantidad:120 PrecioCompra:200 Fecha_de_Registro_de_Compra:03/06/19-13-24-35
+Producto:queso Cantidad:201 PrecioCompra:25 Fecha_de_Registro_de_Compra:03/06/19-13-24-35
+Producto:medias Cantidad:12 PrecioCompra:5 Fecha_de_Registro_de_Compra:03/06/19-13-24-35
+Producto:sabanas Cantidad:20 PrecioCompra:120 Fecha_de_Registro_de_Compra:03/06/19-13-24-35
+Producto:zapatos Cantidad:9 PrecioCompra:40 Fecha_de_Registro_de_Compra:12/07/19-13-24-35
+Producto:baldoza Cantidad:200 PrecioCompra:2.10 Fecha_de_Registro_de_Compra:19/10/19-12-35-04
+Producto:azadon Cantidad:2 PrecioCompra:1.50 Fecha_de_Registro_de_Compra:19/10/19-12-35-04
+Producto:manual Cantidad:200 PrecioCompra:10 Fecha_de_Registro_de_Compra:20/10/19-13-10-49
+Producto:rabano Cantidad:20 PrecioCompra:10 Fecha_de_Registro_de_Compra:20/10/19-13-10-49
+Producto:cerdo Cantidad:10 PrecioCompra:2.3 Fecha_de_Registro_de_Compra:20/10/19-13-10-49
+Producto:tomatechino Cantidad:2 PrecioCompra:10 Fecha_de_Registro_de_Compra:21/10/19-13-10-49
+Producto:tomateverde Cantidad:12 PrecioCompra:0.50 Fecha_de_Registro_de_Compra:22/10/19-13-10-49
+Producto:cable-utp Cantidad:20 PrecioCompra:10 Fecha_de_Registro_de_Compra:21/10/19-20-11-12
+Producto:atun Cantidad:20 PrecioCompra:1.20 Fecha_de_Registro_de_Compra:21/10/19-20-25-28
+Producto:tilapia Cantidad:2 PrecioCompra:2.30 Fecha_de_Registro_de_Compra:21/10/19-20-25-28
+Producto:mortadela Cantidad:3 PrecioCompra:2 Fecha_de_Registro_de_Compra:25/10/19-20-26-20
+Producto:huevo Cantidad:12 PrecioCompra:0.15 Fecha_de_Registro_de_Compra:25/10/19-20-26-20

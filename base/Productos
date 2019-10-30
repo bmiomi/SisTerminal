@@ -1,43 +1,68 @@
 
-Producto:Zapatos Categoria:Ropa
-Producto:Camisa Categoria:Ropa
-Producto:Yogourt Categoria:Lacteo
-Producto:Vino Categoria:Alcol
-Producto:Muebles Categoria:Elementodehogar
-Producto:Microondas Categoria:Electrodomesticos
-Producto:Nevera Categoria:Electrodomesticos
-Producto:Cosina Categoria:Electrodomesticos
-Producto:Mentol Categoria:Medicamento
-Producto:Teclado Categoria:DispositivoElectronico
-Producto:sal Categoria:productoparacosinar
-Producto:papa Categoria:productoparacosinar
-Producto:brocoli Categoria:productoparacosinar
-Producto:rabano Categoria:productoparacosinar
-Producto:lenteja Categoria:productoparacosinar
-Producto:Azucar Categoria:productoparacosinar
-Producto:rabano Categoria:productoparacosinar
-Producto:tomatillo Categoria:productoparacosinar
-Producto:Xiamoi Categoria:Dispositivo
-Producto:Motorola Categoria:Dispositivo
-Producto:Samsung Categoria:Dispositivo
-Producto:Queso Categoria:productoparacosinar
-Producto:Medias Categoria:Ropa
-Producto:Zanahoria Categoria:productoparacosinar
-Producto:Mortadela Categoria:productoparacosinar
-Producto:tomate Categoria:productoparacosinar
-Producto:sillas Categoria:Elementodehogar
-Producto:metanol Categoria:Medicamento
-Producto:Brocoli Categoria:productoparacosinar
-Producto:Oregano Categoria:productoparacosinar
-Producto:Levadura Categoria:productoparacosinar
-Producto:Pepinillo Categoria:productoparacosinar
-Producto:Pepino Categoria:productoparacosinar
-Producto:Zapote Categoria:Elementodecosina
-Producto:Maracuya Categoria:Elementodecosina
-Producto:Marihuana Categoria:plantamedicinal
-Producto:cereal Categoria:productodecosina
-Producto:avena Categoria:cereal
-Producto:cereza Categoria:sas
-Producto:guineo Categoria:fruta
-
-Producto:leche Categoria:lacteo
+Producto:abanico Categoria:objeto Cantidad:30
+Producto:zapatos Categoria:Ropa Cantidad:39
+Producto:Camisa Categoria:Ropa Cantidad:30
+Producto:Yogourt Categoria:Lacteo Cantidad:22
+Producto:Vino Categoria:Alcol Cantidad:22
+Producto:Muebles Categoria:Elementodehogar Cantidad:22
+Producto:Microondas Categoria:Electrodomesticos Cantidad:67
+Producto:Nevera Categoria:Electrodomesticos Cantidad:33
+Producto:Cosina Categoria:Electrodomesticos Cantidad:30
+Producto:Teclado Categoria:DispositivoElectronico Cantidad:63
+Producto:mentol Categoria:Medicamento Cantidad:22
+Producto:sal Categoria:Cosinar Cantidad:30
+Producto:papa Categoria:Cosinar Cantidad:53
+Producto:brocoli Categoria:Cosinar Cantidad:22
+Producto:rabano Categoria:Cosinar Cantidad:50
+Producto:lenteja Categoria:Cosinar Cantidad:30
+Producto:Azucar Categoria:Cosinar Cantidad:30
+Producto:rabano Categoria:Cosinar Cantidad:50
+Producto:tomatillo Categoria:Cosinar Cantidad:33
+Producto:Xiamoi Categoria:Dispositivo Cantidad:30
+Producto:Motorola Categoria:Dispositivo Cantidad:30
+Producto:Samsung Categoria:Dispositivo Cantidad:30
+Producto:queso Categoria:Cosinar Cantidad:246
+Producto:medias Categoria:Ropa Cantidad:75
+Producto:zanahoria Categoria:Cosinar Cantidad:30
+Producto:Mortadela Categoria:Cosinar Cantidad:63
+Producto:tomate Categoria:Cosinar Cantidad:30
+Producto:sillas Categoria:Elementodehogar Cantidad:33
+Producto:metanol Categoria:Medicamento Cantidad:30
+Producto:Brocoli Categoria:Cosinar Cantidad:22
+Producto:Oregano Categoria:Cosinar Cantidad:48
+Producto:Levadura Categoria:Cosinar Cantidad:63
+Producto:pepinillo Categoria:Cosinar Cantidad:25
+Producto:pepino Categoria:Cosinar Cantidad:142
+Producto:zapote Categoria:Cosinar Cantidad:30
+Producto:maracuya Categoria: Cantidad:30
+Producto:marihuana Categoria:plantamedicinal Cantidad:30
+Producto:avena Categoria:cereal Cantidad:30
+Producto:cereza Categoria:trago Cantidad:30
+Producto:guineo Categoria:fruta Cantidad:22
+Producto:leche Categoria:lacteo Cantidad:22
+Producto:Tomate Categoria:Verdura Cantidad:30
+Producto:Chrome Categoria:sofware Cantidad:10
+Producto:PS4 Categoria:Electrodomestico Cantidad:22
+Producto:televisor Categoria:electrodomestico Cantidad:22
+Producto:radio Categoria:electrodomestico Cantidad:63
+Producto:Mochila Categoria:accesorio Cantidad:30
+Producto:lavadora Categoria:Electrodomestico Cantidad:63
+Producto:agua Categoria:agua Cantidad:30
+Producto:spotyfive Categoria:musica Cantidad:28
+Producto:guitarra Categoria:Instrumento Cantidad:150
+Producto:abanico Categoria:objeto Cantidad:30
+Producto:sabanas Categoria:hogar Cantidad:28
+Producto:desodorante Categoria:raro Cantidad:53
+Producto:tarta Categoria:comida Cantidad:10
+Producto:anaquel Categoria:inmueble Cantidad:30
+Producto:baldoza Categoria:costruccion Cantidad:200
+Producto:azadon Categoria:construccion Cantidad:2
+Producto:manual Categoria:escolar Cantidad:200
+Producto:cerdo Categoria:carne_res Cantidad:10
+Producto:tomatechino Categoria:cosina Cantidad:2
+Producto:tomateverde Categoria:cosina Cantidad:12
+Producto:cable-utep Categoria:electronica Cantidad:20
+Producto:atun Categoria:cosina Cantidad:20
+Producto:tilapia Categoria:marisco Cantidad:2
+Producto:mortadela Categoria:embutido Cantidad:3
+Producto:huevo Categoria:cosina Cantidad:12

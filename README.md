@@ -1,3 +1,0 @@
-# SisTerminal
-No tenia nada que hacer asi que me decidi realizar un pequeño sistema monotarea en donde con usuarios los cuales  ya han sido creados previamente en el codigo,estos a su ves tienen un rol,los mismos que estan agrupados en una lista diccionario.
-los usuarios  mencionados anteriormente son los que inician el sistema ya que dependiendo de su funcion o rol se abriran las difirentes interfaces que se an desarrollado tanto en como en la creación,modificacíon,Elminación,Visualizacion de clientes,articulos,compras,ventas los cuales se guardaran un un directorio en donde por cada modulo que se quiera realizar se creara un archivo  asemejandoce a una base de dato,en pocas palabras en un crud xd!!
