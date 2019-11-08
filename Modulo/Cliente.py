@@ -5,18 +5,16 @@ from .config.archivos import Directorio
 
 # from Modulo.Persona import Persona
 
-
 class Clientes:
 
-	# variable de clase de ambito privado.
+	# variable de classe de ambito privado.
 	__clientes = []
 
-	def __init__(self, codigo=None):
+	def __init__(self):
 		# Persona.__init__(self)
 		self.__nombre = None
 		self.__apellido = None
 		self.set_Codigo = None
-		self.Buscar_Cliente(codigo)
 
 	def __repr__(self):
 		return f" Cliente {self.get_Nombre} con Codigo:{self.get_Codigo}"
@@ -54,11 +52,10 @@ class Clientes:
 		self.__codigo = codigo
 
  # metodos Staticos Privados
-	@staticmethod
+	@staticmethod 
 	def __guargar_txt(cliente, codigo):
 		with open(str(Directorio())+'Clientes', 'a') as archivo:
-			archivo.write(
-				f'Nombre:{cliente} Apellido: Codigo:{str(codigo)}\n')
+			archivo.write(f'Nombre:{cliente} Apellido: Codigo:{str(codigo)}\n')
 
 	@staticmethod
 	def __CargarClientes():
@@ -66,7 +63,6 @@ class Clientes:
 		  se cargan los productos que se encuentran en archivo txt
 		  a la lista diccionario.
 		'''
-
 		with open(Directorio()+'Clientes', 'r') as listadeclientes:
 			contenedor = listadeclientes.read().split()
 			lista1 = []
@@ -86,20 +82,12 @@ class Clientes:
 				Clientes.__clientes.append(dict(i))
 			return Clientes.__clientes
 
-	@classmethod
-	def VerficarClienteArchivo(cls, nombre):
-		'''Se verifica que el cliente exista en el archivo creado en caso de existir retornara un True'''
-		with open(Directorio()+'Clientes', 'r') as archivo:
-			if nombre in archivo.read():
-				return True
-			return False
-
 	# Metodos de Instancia
 	def Agregar_Cliente(self):
 		try:
 			cliente=input('ingrese el cliente ')
 			config.logging.debug('Proceso Agregar Cliente')
-			if Clientes.VerficarClienteArchivo(cliente) == False:
+			if self.Buscar_Cliente(cliente) == False:
 				codigo = random.randint(0, 99999)
 				self.__guargar_txt(cliente, codigo)
 				print("Cliente: {0} creado con exito su codigo es {1} ".format(
@@ -107,7 +95,7 @@ class Clientes:
 				config.logging.debug(
 					"Cliente: {0} creado con exito".format(cliente))
 			else:
-				print("Cliente: {0} no creado por que ya existe o su registro no fue el correcto.".format(
+				print("Cliente: {0} no creado por que ya existe.".format(
 					cliente))
 				config.logging.critical(
 					'Proceso no realizado,Cliente existente')
@@ -150,15 +138,16 @@ class Clientes:
 					print(
 						'El cliente {0} no se encuentra en este equipo'.format(cliente))
 
-	def Buscar_Cliente(self, codigo):
+	def Buscar_Cliente(self, Buscar):
 		for i in self.getLista_clientes:
-			if type(i) is dict:
-				if codigo is not None and codigo in i['Codigo']:
-					self.set_Nombre = i['Nombre']
-					self.set_Apellido = i['Apellido']
-					self.set_Codigo = i['Codigo']
-					return True,i
-		return False, "Cliente No Encontrado."
+			if Buscar in i['Codigo'] or Buscar in i['Nombre']:
+				self.set_Nombre = i['Nombre']
+				self.set_Apellido = i['Apellido']
+				self.set_Codigo = i['Codigo']
+				print(f'Codigo: {self.get_Codigo} Cliente: {self.get_Nombre}')
+				return True
+				print('Actualmente no se tiene registro para el Cliente con Codigo/Nombre ingresasdo')
+		return False
 
 	def Ver_Clientes(self):
 		print('N° Clientes: ', len(self.getLista_clientes))
@@ -170,5 +159,4 @@ class Clientes:
 	def validar(self):
 		if self.get_Codigo is not None and self.get_Nombre is not None:
 			return True
-		else:
-			return False
+		return False

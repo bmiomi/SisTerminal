@@ -1,15 +1,12 @@
 import os
-
-__nuevo= os.getcwd()
-__nuevo.strip('\Modulo\config')
+__nuevo= os.getcwd().rstrip(' \Modulo')
 
 def Directorio():
         if 'base' not in os.listdir(__nuevo):      
                 os.mkdir(__nuevo+'\\'+'base')
                 directorio=__nuevo+'\\base'
                 return directorio                
-        else:
-                return __nuevo+'\\base\\'
+        return __nuevo+'\\base\\'
 
 def crearArchivo(nombre):
         with open (str(Directorio())+'\\'+nombre,'a') as archivo:

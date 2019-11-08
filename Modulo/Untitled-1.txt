@@ -1,0 +1,10 @@
+
+-Administrador
+* Todos los modulos
+
+- Cajero
+* Clientes
+* Ventas 
+
+-- Usuario linea
+* Venta

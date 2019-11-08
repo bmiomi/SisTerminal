@@ -9,10 +9,9 @@ class Personal:
                 {'Usuario':'Ricardo','contra':123,'Cargo':'Cajero'},
                 {'Usuario':'Maria','contra':123,'Cargo':'Cajero'},
                 {'Usuario':'Paola','contra':12,'Cargo':'ADMINISTRADOR'},
-                {'Usuario':'Tatiana','contra':123,'Cargo':'ANALISTA'},
-                {'Usuario':'marcelo','contra':123,'Cargo':'ANALISTA'}                
+                {'Usuario':'Tatiana','contra':123,'Cargo':'ADMINISTRADOR'},
+                {'Usuario':'marcelo','contra':123,'Cargo':'ADMINISTRADOR'}                
                 ]
-
 
     def __init__(self):
         self.__nombreusuario=None
@@ -52,7 +51,7 @@ class Personal:
         self.Lusuarios.append({'Usuario':empleado ,'contra':contrasena})
 
     def eliminarEmpleado(self,empleado):
-        if cliente in self.Lusuarios:
+        if empleado in self.Lusuarios:
             resp=input('Seguro desea Eliminar el cliente {0}: '.format(empleado))
             if resp in ('si','S','SI','s'):
                 self.Lusuarios.remove(empleado)
@@ -72,5 +71,4 @@ class Personal:
         if self.getUsuario is not  None and usuario==self.getUsuario  and self.getPassword is not None and contrasena==self.getPassword:
             self.Cargo=self.getcargo
             return True
-        else:
-            return False
+        return False
