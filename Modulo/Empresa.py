@@ -187,7 +187,7 @@ class Empresa():
      if opt == '1':
         self.Moduloclientes()
      elif opt == '2':
-         self.ModuloCompras()
+         self.ModuloVentas()
  # ----------------------------Administrador-----------------------------------
 
   def menuAdministrador(self):
@@ -232,8 +232,6 @@ class Empresa():
       ##     ##  ##  ##     ## ##     ##  ##  ##    ##    ##    ##    ##    ##    ##       ##     ## 
       ##     ## ####  #######  ##     ## ####  ######     ##     ######     ##    ######## ##     ## 
       ''')  
-
-
 
   def run(self):
       try:

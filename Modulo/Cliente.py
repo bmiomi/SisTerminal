@@ -1,7 +1,6 @@
 import random
-
-from .config import config
-from .config.archivos import Directorio
+from config import config
+from config.archivos import Directorio
 
 # from Modulo.Persona import Persona
 
@@ -59,28 +58,25 @@ class Clientes:
 
 	@staticmethod
 	def __CargarClientes():
-		'''
-		  se cargan los productos que se encuentran en archivo txt
-		  a la lista diccionario.
-		'''
+		'''Se crea una lista con diccionarios del archivo txt en el directorio \\base .'''
+		lista1 = []
 		with open(Directorio()+'Clientes', 'r') as listadeclientes:
 			contenedor = listadeclientes.read().split()
-			lista1 = []
-			lista2 = []
-			for i in range(len(contenedor)):
-				lista1.append(contenedor[i])
-				if len(lista1) == 3:
-					lista2.append(lista1)  # N°Elementos
-					lista1 = []  # 0
-			for i in lista2:
+			while len (contenedor)> 3:
+				tem=contenedor[:3]
+				lista1.append(tem)
+				contenedor=contenedor[3:]
+			lista1.append(contenedor)
+			contenedor=[]
+			for i in lista1:
 				for x in range(len(i)):
 					Clientes.__clientes.append(i[x].split(':'))
 					if len(Clientes.__clientes) == 3:
-						lista1.append(Clientes.__clientes)  # N° Elementos
+						contenedor.append(Clientes.__clientes)  # N° Elementos
 						Clientes.__clientes = []  # 0
-			for i in lista1:
+			for i in contenedor:
 				Clientes.__clientes.append(dict(i))
-			return Clientes.__clientes
+			#return Clientes.__clientes
 
 	# Metodos de Instancia
 	def Agregar_Cliente(self):
@@ -125,18 +121,16 @@ class Clientes:
 			archivoreadlines = archivo.readlines()
 		for i in archivoreadlines:
 			if cliente in i:
-				resp = input(
-					'Seguro desea Eliminar el cliente {0}: '.format(cliente))
+				resp = input(f'Seguro desea Eliminar el cliente {cliente}:')
 				if resp in ('si', 'S', 'SI', 's'):
 					archivoreadlines.remove(i)
 					lista = [i.split() for i in archivoreadlines]
 					with open(Directorio()+'Clientes', 'w') as archivo:
 						for i in range(len(lista)):
 							archivo.write(lista[i][0]+' '+lista[i][1]+' '+lista[i][2]+'\n')
-					print("Cliente: {0} Eliminado con exito ".format(cliente))
+					print(f"Cliente: {cliente} Eliminado con exito ")
 				else:
-					print(
-						'El cliente {0} no se encuentra en este equipo'.format(cliente))
+					print(f"El cliente {cliente} no se encuentra en este equipo")
 
 	def Buscar_Cliente(self, Buscar):
 		for i in self.getLista_clientes:
@@ -144,9 +138,8 @@ class Clientes:
 				self.set_Nombre = i['Nombre']
 				self.set_Apellido = i['Apellido']
 				self.set_Codigo = i['Codigo']
-				print(f'Codigo: {self.get_Codigo} Cliente: {self.get_Nombre}')
+				print(f'Codigo: {self.get_Codigo} Cliente: {self.get_Nombre} {self.get_Apellido}')
 				return True
-				print('Actualmente no se tiene registro para el Cliente con Codigo/Nombre ingresasdo')
 		return False
 
 	def Ver_Clientes(self):
@@ -160,3 +153,14 @@ class Clientes:
 		if self.get_Codigo is not None and self.get_Nombre is not None:
 			return True
 		return False
+
+
+ObjCliente=Clientes()
+print(ObjCliente.getLista_clientes)
+# t=0
+# for i in ObjCliente.getLista_clientes:
+	# if i['Apellido']=='':
+		# t+=1
+		# i['Apellido']='Undifene'
+	# print(f"Cliente Con Nombre: {i['Nombre']} {i['Apellido']}")
+# print('Apellidos Vacios:',t)
