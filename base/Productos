@@ -60,10 +60,11 @@ Producto:azadon Categoria:construccion Cantidad:2
 Producto:manual Categoria:escolar Cantidad:200
 Producto:cerdo Categoria:carne_res Cantidad:10
 Producto:tomatechino Categoria:cosina Cantidad:2
-Producto:tomateverde Categoria:cosina Cantidad:12
+Producto:tomateverde Categoria:cosina Cantidad:32
 Producto:cable-utep Categoria:electronica Cantidad:20
 Producto:atun Categoria:cosina Cantidad:20
 Producto:tilapia Categoria:marisco Cantidad:2
 Producto:mortadela Categoria:embutido Cantidad:3
 Producto:huevo Categoria:cosina Cantidad:12
 Producto:mermelada Categoria:cosina Cantidad:12
+Producto:tomates Categoria:cosina Cantidad:10

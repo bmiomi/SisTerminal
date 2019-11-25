@@ -1,6 +1,5 @@
-from abc import abstractproperty
-
-class Persona:
+from abc import abstractproperty,ABCMeta
+class Persona (metaclass=ABCMeta):
 
     @abstractproperty
     def get_Nombre(self):

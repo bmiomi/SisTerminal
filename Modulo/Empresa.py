@@ -5,17 +5,15 @@ from getpass import getpass
 from tqdm import tqdm
 
 from .Cliente import Clientes
-from .Personal import Personal
+from .Empleados import Empleados
 from .Compra import Compras
 from .Ventas import VentaProductos
 from .Factura import factura
 
 
-def loggin(func):
-    
+def loggin(func):    
     def verificar(self,Obj):
-
-        if Obj.validar(input('Ingrese su Usuario: '),getpass('Ingrese contraseña: ')) or Obj.getcargo is not None:
+        if Obj.validar(input('Ingrese su Usuario: ').title(),getpass('Ingrese contraseña: ')) or Obj.getcargo is not None:
             print('Welcome at the platform')
             #for i in tqdm(range(10)):
             #   time.sleep(2)
@@ -37,7 +35,7 @@ class Empresa():
     self.ObjetoCompra = Compras()
     self.ObjetoVenta = VentaProductos()
     self.objCliente = Clientes()
-    self.ojPersonal=Personal()
+    self.ojPersonal=Empleados()
 
 
     "16DA:BN25_27"
@@ -67,7 +65,8 @@ class Empresa():
     valor=opcionesCliente.get(OptCliente)
     if valor is 4:
         return valor(input('Ingrese el Codigo/Nombre del Cliente a Buscar'))
-    return valor()
+    valor()
+    return self.ValidarCargoMenu()
 
  # ----------------------------Prductos-----------------------------
   def ModuloProdutos(self):
@@ -162,7 +161,7 @@ class Empresa():
   def registro(self, Obj):
       if Obj.getcargo is not None:
           os.system('cls')
-          print(f'Atendido por: {Obj.SetUsuario} \t\t\t Cargo: {Obj.Cargo}')
+          print(f'Atendido por: {Obj.SetUsuario} \t\t\t Cargo: {Obj.SetCargo}')
           self.ValidarCargoMenu()
       return False
 
@@ -242,15 +241,14 @@ class Empresa():
               self.registro(self.ojPersonal)
           else:        
               consulta=input('Estimado Clientes tienes registro o posees un cuenta en nuestra Empresa (Si/No): ')
-              if consulta not in listaOpciones:
-                  self.objCliente.Agregar_Cliente(input('Ingrese su Nombre: '))
-              else:
+              if consulta in listaOpciones:
                    self.objCliente.Buscar_Cliente(input('Ingrese su codigo '))
                    if self.objCliente.validar():
                        print(f' Bienvenido {self.objCliente.get_Nombre} {self.objCliente.get_Apellido}')
                        self.ModuloVentas()
       except KeyboardInterrupt as e:
          print('\n')
+      finally:
          print('*'*100)
-         print('Cerrando programa'.center(20))
+         print('Cerrando Programa'.center(20))
          print('*'*100)

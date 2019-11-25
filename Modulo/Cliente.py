@@ -1,6 +1,6 @@
 import random
-from config import config
-from config.archivos import Directorio
+from .config import config
+from .config.archivos import Directorio
 
 # from Modulo.Persona import Persona
 
@@ -76,7 +76,7 @@ class Clientes:
 						Clientes.__clientes = []  # 0
 			for i in contenedor:
 				Clientes.__clientes.append(dict(i))
-			#return Clientes.__clientes
+			return Clientes.__clientes
 
 	# Metodos de Instancia
 	def Agregar_Cliente(self):
@@ -119,8 +119,9 @@ class Clientes:
 		cliente = input('Ingrese el Nombre del cliente a eliminar: ')
 		with open(Directorio()+'Clientes', 'r') as archivo:
 			archivoreadlines = archivo.readlines()
+
 		for i in archivoreadlines:
-			if cliente in i:
+			if len(cliente)>3 and cliente in i:
 				resp = input(f'Seguro desea Eliminar el cliente {cliente}:')
 				if resp in ('si', 'S', 'SI', 's'):
 					archivoreadlines.remove(i)
@@ -130,7 +131,7 @@ class Clientes:
 							archivo.write(lista[i][0]+' '+lista[i][1]+' '+lista[i][2]+'\n')
 					print(f"Cliente: {cliente} Eliminado con exito ")
 				else:
-					print(f"El cliente {cliente} no se encuentra en este equipo")
+					print(f"Los cambios para el cliente {cliente} fueron cancelados.")
 
 	def Buscar_Cliente(self, Buscar):
 		for i in self.getLista_clientes:
@@ -146,21 +147,9 @@ class Clientes:
 		print('N° Clientes: ', len(self.getLista_clientes))
 		if len(self.getLista_clientes) >= 1:
 			for i in self.getLista_clientes:
-				print(
-					f"Cliente:{i['Nombre']} Apellido:{i['Apellido']} Codigo:{i['Codigo']}")
+				print(f"Cliente:{i['Nombre']} Apellido:{i['Apellido']} Codigo:{i['Codigo']}")
 
 	def validar(self):
 		if self.get_Codigo is not None and self.get_Nombre is not None:
 			return True
 		return False
-
-
-ObjCliente=Clientes()
-print(ObjCliente.getLista_clientes)
-# t=0
-# for i in ObjCliente.getLista_clientes:
-	# if i['Apellido']=='':
-		# t+=1
-		# i['Apellido']='Undifene'
-	# print(f"Cliente Con Nombre: {i['Nombre']} {i['Apellido']}")
-# print('Apellidos Vacios:',t)

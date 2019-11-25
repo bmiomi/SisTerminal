@@ -1,9 +1,10 @@
 from .Personal import Personal
 
-class PagosClientes ():
+class PagosClientes (Personal):
     
     def __init__(self):
-            self.ObjPersonal=Personal()
+        super().__init__()
+        self.ObjPersonal=Personal()
 
     def Contado(self,valorCancelar):
         self.ObjPersonal.validar('Tatiana',123)

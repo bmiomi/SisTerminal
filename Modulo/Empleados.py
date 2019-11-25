@@ -1,4 +1,6 @@
-class Personal:
+#from .Personas import Persona
+
+class Empleados:
 
     __Lusuarios=[                
                 {'Usuario':'Carlos','contra':134,'Cargo':'Cajero'},
@@ -16,6 +18,7 @@ class Personal:
     def __init__(self):
         self.__nombreusuario=None
         self.__password=None
+        self.__Cargo=None
   
     def __str__(self):
         return '{0},{1},{2}'.format(self.getUsuario,self.getPassword,self.getcargo() )
@@ -36,16 +39,19 @@ class Personal:
     def SetPassword(self,contra):
         self.__password= contra
     
-    def _BuscarUsuario (self,nombre):
-        for x in self.__Lusuarios:
-            if   nombre == x['Usuario']:
-                return x
-        return None
-
     @property
     def getcargo(self):
-        if self._BuscarUsuario(self.getUsuario) is not  None:
-             return self._BuscarUsuario(self.getUsuario)['Cargo']
+        return self.__Cargo
+
+    @getcargo.setter
+    def SetCargo(self,cargo):
+        self.__Cargo=cargo
+    
+    def _BuscarUsuario (self,nombre):
+        print('valor a retornar al ejecutar esto :', nombre)
+        for x in self.__Lusuarios:
+            if x['Usuario'].find(nombre) != -1:
+                return x
 
     def crearEmpleado(self,empleado,contrasena='default'):
         self.Lusuarios.append({'Usuario':empleado ,'contra':contrasena})
@@ -64,11 +70,9 @@ class Personal:
     
     def validar(self,usuario,contrasena):
         i=self._BuscarUsuario(usuario)
-        if i is not None:
+        if type(i) is dict:
             self.SetUsuario=i['Usuario']
             self.SetPassword=str(i['contra'])
-
-        if self.getUsuario is not  None and usuario==self.getUsuario  and self.getPassword is not None and contrasena==self.getPassword:
-            self.Cargo=self.getcargo
+            self.SetCargo=i['Cargo']
             return True
         return False

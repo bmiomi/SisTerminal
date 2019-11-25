@@ -9,7 +9,7 @@ class factura:
     
     self.codigo=4444
     self.serie=3333
-    self.obj_cliente=Clientes(CodigoCliente)
+    self.obj_cliente=Clientes()
     self.Obj_venta=VentaProductos()
 
   def __str__(self):
@@ -52,3 +52,4 @@ class factura:
   def generarFactura(self,nombreE):
         self.getCabecera(nombreE)
         self.getdetalle()
+

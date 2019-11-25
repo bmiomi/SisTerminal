@@ -8,8 +8,8 @@ class VentaProductos:
     _Cesta_Venta=[]
 
     def __init__(self):
-        self.Objproducto=Productos()
-        self.Objcompra=Compras()
+        self.Objproducto=Productos
+        self.Objcompra=Compras
 
     @property
     def getcesta_venta(self):
