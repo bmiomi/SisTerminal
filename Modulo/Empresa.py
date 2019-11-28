@@ -42,17 +42,6 @@ class Empresa():
 
  # ----------------------------Clientes--------------------------
   def Moduloclientes(self):
-
-    while True:
-        try:
-            OptCliente = input(
-                'Seleccione una Opcion \n' '1).Crear clientes\n' '2).Modificar clientes\n' '3).Eliminar clientes\n' '4).Buscar cliente\n' '5).Ver Clientes\n' '6) Salir: ')
-            break
-        except ValueError as e:
-            print(
-                f'ADVERTENCIA : Valor ingresado Incorrecto se lanzo la excepcion de tipo: {e}')
-            time.sleep(1)
-            os.system('cls')
     opcionesCliente={
         '1':self.objCliente.Agregar_Cliente,
         '2':self.objCliente.Modificar_Cliente,
@@ -60,102 +49,70 @@ class Empresa():
         '4':self.objCliente.Buscar_Cliente,
         '5':self.objCliente.Ver_Clientes,
         '6':self.ValidarCargoMenu
-    }
-    
+        }
+    while True:
+        OptCliente = input(
+            'Seleccione una Opcion \n' '1).Crear clientes\n' '2).Modificar clientes\n' '3).Eliminar clientes\n' '4).Buscar cliente\n' '5).Ver Clientes\n' '6) Salir: ')
+        if OptCliente.isdigit(): 
+            time.sleep(1)
+            os.system('cls')
+            break
     valor=opcionesCliente.get(OptCliente)
-    if valor is 4:
-        return valor(input('Ingrese el Codigo/Nombre del Cliente a Buscar'))
-    valor()
+    if OptCliente == '4':
+        return valor(input('Ingrese el Codigo/Nombre del Cliente a Buscar: '))
+    elif valor is not None:
+        valor()
     return self.ValidarCargoMenu()
 
- # ----------------------------Prductos-----------------------------
-  def ModuloProdutos(self):
-      while True:
-           try:
-               respuesta = int(input(
-                   'Seleccione una Opcion\t\n1) Crear producto\n2)Modificar Producto\n3)Eliminar Producto\n4)VerProductos\n5)regresar: '))
-               break
-           except ValueError as e:
-               print(
-                   f'ADVERTENCIA : Valor ingresado Incorrecto se lanzo la excepcion de tipo: {e}')
-               time.sleep(3)
-               os.system('cls')    
-      if respuesta == 1:
-         prodc = int(input('Cuantos Productos Deseas Agregar: '))
-         for i in range(prodc):
-            nombre = input('Dijiste el nombre del producto: ')
-            cantidad = input('Dijiste la Categoria del producto: ')
-            producto = Productos(nombre, cantidad)
-            producto.agre_productos()
-            time.sleep(3)
-      elif respuesta == 2:
-        NombreViejo = input('Nombre del Producto que Deseas Modificar: ')
-        nombreNuevo = input('Ingrese el Nuevo nombre: ')
-        producto = Productos()
-        producto.actu_productos(NombreViejo, nombreNuevo)
-      elif respuesta == 3:
-        pass
-      elif respuesta == 4:
-        producto = Productos()
-        producto.ver_todosproductos()
-        time.sleep(5)
-      elif respuesta == 5:
-       os.system('cls')
-      self.ValidarCargoMenu(i[1])  # ojo revisa    
  # ----------------------------Comprar-----------------------------
   def ModuloCompras(self):
-      while True:
-           try:
-               respuesta = input(
-                   'Seleccione una Opcion\t\n1) Registrar Compra\n2)Visualizar compras\n3)regresar: ')
-               break
-           except ValueError as e:
-               print(
-                   f'ADVERTENCIA : Valor ingresado Incorrecto se lanzo la excepcion de tipo: {e}')
-               time.sleep(3)
-               os.system('cls')
+      
       opcionescompra={
         '1':self.ObjetoCompra.AgregarCompra,
         '2':self.ObjetoCompra.VerCompra,
         '3':self.ValidarCargoMenu
     }
-    
+      while True: 
+        respuesta = input('Seleccione una Opcion\t\n1) Registrar Compra\n2)Visualizar compras\n3)regresar: ')
+        if respuesta.isdigit():
+            time.sleep(1)
+            os.system('cls')             
+            break
       re=opcionescompra.get(respuesta)
-      if re:
-          return re()          
+      if re is not  None:
+          re()
+      return self.ValidarCargoMenu()       
  # ----------------------------Ventas-------------------------------
+
   def ModuloVentas(self):
       while True:
-          try:
-              if keyboard.is_pressed('ctrl+g'):
-                print('entre')
-                self.ModuloFactura()
-                break
-              else:
-                  self.ObjetoVenta.AgregarVenta(
-                 input('Producto a Buscar: '), 
-                 input('ingrese la cantiad: ')
-                 )
-          except ValueError :
-              pass
-                         #self.ObjetoVenta.verCesta()
-                 # time.sleep(30)
-                 # os.system('cls')
-    # self.menuAdministrador()
+          iteraciones=int(input(f'Cuatos productos adquirio en nuestra Tienda estimado {self.objCliente.get_Nombre}: '))
+          intentos=0
+          while iteraciones >= intentos:
+            print('Ingrese el Producto N°',intentos+1)
+            respuesta=self.ObjetoVenta.AgregarVenta( input('Producto a Buscar: '), input('ingrese la cantiad: '))    
+            if respuesta is True:
+               os.system('cls')
+               intentos+=1  
+          consultar=input('Desea Genara una factura a la compra: ')
+          if consultar in ('Si','si','s','S'):
+              self.__ModuloFactura()
+          break  
+      self.menuAdministrador()
 
  # ----------------------------Factura-------------------------------
-  def ModuloFactura(self):
+
+  def __ModuloFactura(self):
      ObjFactura = factura(self.objCliente.get_Codigo)
-     p = self.objCliente.Buscar_Cliente(self.objCliente.get_Codigo)
-     if p[0] is False:
+     if self.objCliente.get_Nombre is None:    
          respuesta = input(
              "El cliente no ha sido registrado en el sistema, por tal motivo  el cliente saldra como Generico en la factura desea aceptar (S|N): ")
          if respuesta in ('S', 'Si', 's', 'y', 'Yes'):
             ObjFactura.getCabecera('Generico')
      else:
-         ObjFactura.getCabecera(p[1]['Nombre'])
-     ObjFactura.getdetalle()
- 
+         ObjFactura.generarFactura(self.Nombre,self.objCliente.get_Nombre,self.objCliente.get_Apellido,self.objCliente.get_Codigo,self.ObjetoVenta._Cesta_Venta)
+
+
  # ----------------------------Validacion Reguistro--------------------
   @loggin
   def registro(self, Obj):
@@ -214,7 +171,6 @@ class Empresa():
           '1':self.Moduloclientes,
           '2':self.ModuloCompras,
           '3':self.ModuloVentas,
-          '5':self.ModuloProdutos
           }
       retornar=opts.get(opt)
       if retornar is not  None:
@@ -244,11 +200,14 @@ class Empresa():
               if consulta in listaOpciones:
                    self.objCliente.Buscar_Cliente(input('Ingrese su codigo '))
                    if self.objCliente.validar():
+                       os.system('cls')
                        print(f' Bienvenido {self.objCliente.get_Nombre} {self.objCliente.get_Apellido}')
                        self.ModuloVentas()
       except KeyboardInterrupt as e:
          print('\n')
-      finally:
          print('*'*100)
          print('Cerrando Programa'.center(20))
          print('*'*100)
+      except ValueError  as e:
+          print('Valor ingreado erroneo')
+ 

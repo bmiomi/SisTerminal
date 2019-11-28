@@ -71,10 +71,11 @@ class Productos:
 
 
       def actualizar_stock(self):
+            print('Tamaño de productos',len(self.getproductos))
             for i in self.getproductos:
                   if self.getNproduct in i['Producto']:
                         i['Cantidad']=str(int(self.getCantidad)+int(i['Cantidad']))
-                        self.setproductos=self.getproductos
+                        print('Tamaño de productos_2',len(self.getproductos))
                         with open(Directorio()+'\\'+'Productos','w') as productostxt:
                               for i in self.getproductos:
                                     productostxt.write(f"\nProducto:{i['Producto']} Categoria:{i['Categoria']} Cantidad:{i['Cantidad']}")
@@ -96,7 +97,6 @@ class Productos:
               productostxt.write(f'\nProducto:{self.Nproducto} Categoria:{self.Categoria} Cantidad:{self.cantidad}')
 
 #     se cargan los productos que se encuentran en archivo txt a la lista diccionario.
-
       def cargarproductos(self):
             with open(Directorio()+'\\'+'Productos','r') as listadeproductos:
               contenedor=listadeproductos.read().split()
@@ -116,37 +116,3 @@ class Productos:
               for  i in lista1:
                     self.productos.append(dict(i))
               return self.productos
-
-## funcion para ejecutar este modulo
-def ModuloProdutos(Objproducto):
-     try:
-         while True:
-                try:
-                    respuesta=int(input('Seleccione una Opcion\t\n1) Crear producto\n2)Modificar Producto\n3)Eliminar Producto\n4)VerProductos\n5)regresar: '))
-                    break
-                except ValueError as e:
-                    print(f'ADVERTENCIA : Valor ingresado Incorrecto se lanzo la excepcion de tipo: {e}')
-       
-         if respuesta == 1:
-             prodc=int(input('Cuantos Productos Deseas Agregar: '))
-             for i in range(prodc):
-                 Objproducto.setNproducto=input('Dijiste el nombre del producto: ')
-                 Objproducto.setCategoria=input('Dijiste la Categoria del producto: ') 
-                 Objproducto.agre_productos()
-         elif respuesta == 2:
-             NombreViejo=input('Nombre del Producto que Deseas Modificar: ')
-             nombreNuevo=input('Ingrese el Nuevo nombre: ')
-             Objproducto.actu_productos(NombreViejo,nombreNuevo)
-         elif respuesta ==3:
-             pass
-         elif respuesta ==4:
-             Objproducto.ver_todosproductos()
-           #  time.sleep(5)
-         elif respuesta ==5:
-            ModuloProdutos(Objproducto) # ojo revisar
-     except KeyboardInterrupt:
-         print('\n')
-         print('*'*100)    
-         print('Cerrando programa'.center(20))
-         print('*'*100)
-

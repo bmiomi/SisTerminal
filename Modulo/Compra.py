@@ -2,12 +2,12 @@ from .Productos import Productos
 from .config.archivos import Directorio
 
 
-class Compras:
+class Compras(Productos):
 
     __cestaCompra = []  # variable de clase.
 
     def __init__(self):
-        self.objtProducto = Productos()
+        super().__init__()
 
     # Metodos de instancia.
     @property
@@ -29,24 +29,25 @@ class Compras:
     def AgregarCompra(self):
         contenedor = []
         diccionario = {}
+        
         registros = int(input("Ingrese cuantos registros desea ingresar: "))
-        for i in range(int(registros)):
+        for i in range(0,int(registros)):
 
-            self.objtProducto.setNproducto = input(
+            self.setNproducto = input(
                 "Ingrese el nombre producto: ")
-            self.objtProducto.setCategoria = input(
+            self.setCategoria = input(
                 "Ingrese la Categoria del producto: ")
-            self.objtProducto.setCantidad = input(
-                "cuantos Productos se han Comprado: ")
+            self.setCantidad = int(input(
+                "cuantos Productos se han Comprado: "))
 
-            if self.objtProducto.Verficarproducto(self.objtProducto.getNproduct) is False:
-                self.objtProducto.agre_productos()
-            else:
-                self.objtProducto.actualizar_stock()
+            if self.Verficarproducto(self.getNproduct) is False: #si no existe Agregar a base/Productos
+                self.agre_productos()
+            else:# si existe el producto actualiar actualizar base/producto
+                self.actualizar_stock()
 
-            precio = input('Ingrese el precio: ')
-            diccionario = {'Producto': self.objtProducto.setNproducto, 'Categoria': self.objtProducto.setCategoria,
-                         'Cantidad': self.objtProducto.setCantidad, 'Precio': precio
+            precio = int(input('Ingrese el precio: '))
+            diccionario = {'Producto': self.setNproducto, 'Categoria': self.setCategoria,
+                         'Cantidad': self.setCantidad, 'Precio': str(precio)
                         }
             contenedor.append(diccionario)
 

@@ -1,13 +1,42 @@
-import keyboard
+import sys
+
+if sys.platform == 'win32':
+
+    import msvcrt
+
+    def keypressed():
+        key = msvcrt.getch()
+        if key == b"\x1b": #ESC
+            return "Escape"
+        else:
+            return key.decode("ANSI")
 
 
-def menu ():
-  respuesta = int(input('Seleccione una Opcion\t\n1) Crear producto\n2)Modificar Producto\n3)Eliminar Producto\n4)VerProductos\n5)regresar: '))
-  return respuesta
+elif sys.platform == 'linux':
 
-while True:
-    menu()
-    keyboard._listener
-    if keyboard.is_pressed('ctrl+a'):
-        print('se precionono ctrl+a')
-        break
+    import os
+    import termios
+    TERMIOS = termios
+
+    def keypressed():
+        fd = sys.stdin.fileno()
+        old = termios.tcgetattr(fd)
+        new = termios.tcgetattr(fd)
+        new[3] = new[3] & ~TERMIOS.ICANON & ~TERMIOS.ECHO
+        new[6][TERMIOS.VMIN] = 1
+        new[6][TERMIOS.VTIME] = 0
+        termios.tcsetattr(fd, TERMIOS.TCSANOW, new)
+        key = None
+        try:
+            key = os.read(fd, 4)
+            if key == b'\x1b':
+                key = "Escape"
+            else:
+                key = key.decode()
+
+        finally:
+            termios.tcsetattr(fd, TERMIOS.TCSAFLUSH, old)
+        return key
+
+pt=keypressed()
+print(pt)

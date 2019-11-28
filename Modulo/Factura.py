@@ -6,36 +6,33 @@ class factura:
   __iva=12 
   
   def __init__(self,CodigoCliente):
-    
     self.codigo=4444
     self.serie=3333
-    self.obj_cliente=Clientes()
-    self.Obj_venta=VentaProductos()
 
   def __str__(self):
     return f'{self.codigo},{self.serie} {self.obj_cliente.get_Nombre} {self.Obj_venta._Cesta_Venta}'
  
-  def getCabecera(self,nombreE):
+  def getCabecera(self,nombreE,NombreCliente,apellidoCliente,codigocliente):
         print ('''
-          Factura : {0}  codigo: {1}  serie: {2} 
-          +++++++++++++++++++++++++++++++++++++
-          cliente: {3} Cedula: None CodCliente: {4}'''.format(
-           nombreE,
-           self.codigo,
-           self.serie,
-           str(self.obj_cliente.get_Nombre+' '+self.obj_cliente.get_Apellido),
-           self.obj_cliente.get_Codigo
-          ) 
-          )
+           Factura : {0}  codigo: {1}  serie: {2} 
+           +++++++++++++++++++++++++++++++++++++
+           cliente: {3} Cedula: None CodCliente: {4}'''.format(
+            nombreE,
+            self.codigo,
+            self.serie,
+            NombreCliente+apellidoCliente,
+            codigocliente
+           ) 
+           )
  
-  def getdetalle(self):         
+  def getdetalle(self,cesta_venta):         
 
          total=0
          subtotal=0
 
          print('''
          {:^10} {:^10} {:^10}'''.format('Descripcion','Cantidad','Precio.U'))
-         for i in self.Obj_venta.getcesta_venta:   
+         for i in cesta_venta:   
            valor=float(i['PV'])*float(i['Cantidad'])
            print('''
            {:^10} {:^10} {:^10}'''.format(i['producto'], i['Cantidad'],i['PV']))
@@ -49,7 +46,7 @@ class factura:
          print('''
          ...................total: {0:.2f}'''.format(total))
       
-  def generarFactura(self,nombreE):
-        self.getCabecera(nombreE)
-        self.getdetalle()
+  def generarFactura(self,nombreE,NombreCliente,apellidoCliente,codigocliente,cesta_venta):
+        self.getCabecera(nombreE,NombreCliente,apellidoCliente,codigocliente)
+        self.getdetalle(cesta_venta)
 

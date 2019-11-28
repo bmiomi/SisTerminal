@@ -1,15 +1,13 @@
 #usr/bin/UFT-8
 from .Compra import Compras
 from .config.archivos import Directorio
-from .Productos import Productos
 
 class VentaProductos:
 
     _Cesta_Venta=[]
 
     def __init__(self):
-        self.Objproducto=Productos
-        self.Objcompra=Compras
+        self.Objcompra=Compras()
 
     @property
     def getcesta_venta(self):
@@ -22,7 +20,7 @@ class VentaProductos:
         elif len(elemento)==1:
             elemento
         else:
-            print(f'No existe registro para la compra para el producto {producto}')
+            print(f'No existe registro del producto {producto}')
             return False
 
         for i in elemento:
