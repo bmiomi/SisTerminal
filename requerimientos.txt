@@ -1,0 +1,6 @@
+Package    Version
+---------- -------
+keyboard   0.13.4 
+pip        19.2.3 
+setuptools 40.8.0 
+tqdm       4.36.1 
