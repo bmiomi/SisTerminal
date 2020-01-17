@@ -1,33 +1,27 @@
-#usr/bin/UFT-8
-from .Compra import Compras
+from .Productos import Producto
 from .config.archivos import Directorio
 
 class VentaProductos:
 
-    _Cesta_Venta=[]
-
     def __init__(self):
-        self.Objcompra=Compras()
+        self._Cesta_Venta=[]
+
+    def __srt__(self):
+        return self._Cesta_Venta
 
     @property
     def getcesta_venta(self):
-        return self._Cesta_Venta
+        if len(self._Cesta_Venta):
+            return self._Cesta_Venta
 
-    def AgregarVenta(self,producto,cantidad):
-        elemento=self.BuscarProducto(producto)
-        if len (elemento)!=0:
-            elemento[-1]
-        elif len(elemento)==1:
-            elemento
-        else:
-            print(f'No existe registro del producto {producto}')
-            return False
-
-        for i in elemento:
-            if producto in i['Producto']:
-                pv=float(i['PrecioCompra'])*12/100
-                self._Cesta_Venta.append({'producto': producto,'Cantidad':cantidad,'PV':str(pv)})
-                return True
+    def AgregarVenta(self):
+        #arreglar
+        if self.producto.Verficarproducto(self.producto.getNproduct):
+            pass
+#       (vproducto)*12/100
+            #     pv=float(i['PrecioCompra'])*12/100
+            #     self._Cesta_Venta.append({'producto': self.producto.getNproduct,'Cantidad':cantidad,'PV':str(pv)})
+            # return True
 
     def json(self):
         import time
@@ -68,3 +62,5 @@ class VentaProductos:
             if buscar in i['Producto']:
                 contenedor.append(i)
         return contenedor
+
+obVEn=VentaProductos()

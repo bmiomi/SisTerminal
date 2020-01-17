@@ -1,0 +1,12 @@
+2019-12-02 15:53:23,233 : DEBUG : Proceso Agregar Cliente
+2019-12-02 15:53:23,290 : CRITICAL : Proceso no realizado,Cliente existente
+2019-12-02 15:53:23,290 : INFO : Proceso  finalizado.
+2019-12-02 15:53:49,212 : DEBUG : Proceso Agregar Cliente
+2019-12-02 15:53:49,218 : DEBUG : Cliente: samanta creado con exito
+2019-12-02 15:53:49,219 : INFO : Proceso  finalizado.
+2019-12-02 15:57:40,826 : DEBUG : Proceso Agregar Cliente
+2019-12-02 15:57:40,828 : DEBUG : Cliente: Ramiro creado con exito
+2019-12-02 15:57:40,829 : INFO : Proceso  finalizado.
+2019-12-02 16:40:04,323 : DEBUG : Proceso Agregar Cliente
+2019-12-02 16:40:04,326 : DEBUG : Cliente: lostfrecuency creado con exito
+2019-12-02 16:40:04,326 : INFO : Proceso  finalizado.

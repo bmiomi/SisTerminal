@@ -1,21 +1,19 @@
-from .Productos import Productos
-from .config.archivos import Directorio
+#from Productos import Producto
+from config.archivos import Directorio,CargarDatos
+from itertools import groupby
+from time import time
 
+class Compras:
 
-class Compras(Productos):
-
-    __cestaCompra = []  # variable de clase.
 
     def __init__(self):
-        super().__init__()
+        #self.ObjProducto=Producto()
+        self.__cestaCompra = []  # variable de clase.
 
     # Metodos de instancia.
     @property
     def getcesta(self):
-        if len(self.__cestaCompra)==0:
-            return self._CargarCompras()
-        else:
-            return self.__cestaCompra
+        return CargarDatos(Compras.__name__)
 
      # ojo editar esta fucion "VerficarCompra" se debe registrar la compra
      # por lote y fecha
@@ -33,21 +31,20 @@ class Compras(Productos):
         registros = int(input("Ingrese cuantos registros desea ingresar: "))
         for i in range(0,int(registros)):
 
-            self.setNproducto = input(
+            self.ObjProducto.setNproducto = input(
                 "Ingrese el nombre producto: ")
-            self.setCategoria = input(
+            self.ObjProducto.setCategoria = input(
                 "Ingrese la Categoria del producto: ")
-            self.setCantidad = int(input(
+            self.ObjProducto.setCantidad = int(input(
                 "cuantos Productos se han Comprado: "))
 
-            if self.Verficarproducto(self.getNproduct) is False: #si no existe Agregar a base/Productos
-                self.agre_productos()
+            if self.ObjProducto.Verficarproducto(self.ObjProducto.getNproduct) is False: #si no existe Agregar a base/Productos
+                self.ObjProducto.agre_productos()
             else:# si existe el producto actualiar actualizar base/producto
-                self.actualizar_stock()
+                self.ObjProducto.actualizar_stock()
 
             precio = int(input('Ingrese el precio: '))
-            diccionario = {'Producto': self.setNproducto, 'Categoria': self.setCategoria,
-                         'Cantidad': self.setCantidad, 'Precio': str(precio)
+            diccionario = { '':self.ObjProducto,'Precio': str(precio)
                         }
             contenedor.append(diccionario)
 
@@ -56,10 +53,9 @@ class Compras(Productos):
             print('Compra Reguistrada,Exitosamente.')
 
     def VerCompra(self):
-        self._CargarCompras()
         print("{:^10} {:^10} {:^10}".format(
             'Producto',  'Cantidad', 'PrecioCompra'))
-        for i in self.__cestaCompra:
+        for i in self.getcesta:
             print(" {:^10} {:^10} {:^10} ".format(
                 i['Producto'], i['Cantidad'], i['PrecioCompra']))
 
@@ -68,29 +64,26 @@ class Compras(Productos):
         with open(Directorio()+'Compras', 'a') as archivo:
             for i in contenedor:
                 archivo.write("Producto:{0} Cantidad:{1} PrecioCompra:{2} Fecha_de_Registro_de_Compra:{3}\n".format(
-                    i['Producto'], i['Cantidad'], i['Precio'],time.strftime("%d/%m/%y-%H-%M-%S")))
+                    i['Producto'], i['Cantidad'], i['Precio'],time.strftime("%d/%m/%y")))
 
-    def _CargarCompras(self):
-        '''
-        Retorna una lista de diccionarios de archivo compras ubicado en el directorio base.
-        '''
-        with open(Directorio()+'Compras', 'r') as listadeclientes:
-          contenedor = listadeclientes.read().split()
-          lista1 = []
-          lista2 = []
-          dic={}
-          for i in range(len(contenedor)):
-              lista1.append(contenedor[i])
-              if len(lista1) ==4:
-                  lista2.append(lista1)  # N°Elementos
-                  lista1 = []  # 0
-          for i in lista2:
-              for x in range(len(i)):
-                  Compras.__cestaCompra.append(i[x].split(':'))
-                  if len(Compras.__cestaCompra)==4:
-                      lista1.append(Compras.__cestaCompra)
-                      Compras.__cestaCompra=[]
-          for i in lista1:
-              Compras.__cestaCompra.append(dict(i))
-          return Compras.__cestaCompra
-    
+
+    def Product_Fecha(self,res):
+        if res ==1:
+            r=input('Ingrese la fecha de compra en formato (dd/mm/aa) Ejemplo 12/11/19,\n Buscar: ')      
+            dato='Fecha_de_Registro_de_Compra'
+            mensaje='Productos Encontrados para la fecha: '
+        elif res ==2:
+            r=input('Ingrese el Nombre del producto a Buscar: ')      
+            dato='Producto'
+            mensaje='Producto: '    
+
+        for key ,value in groupby(sorted (self.getcesta,key= lambda x: x[dato] ),lambda x:x[dato]  ):
+            if r in key:
+                print("Producto | Cantidad | PrecioCompra")
+                for i in value:
+                    print(f"{i['Producto']}         {i['Cantidad']}        ${i['PrecioCompra']}")
+                return True
+        print('No hay registros')
+
+compra=Compras()
+compra.VerCompra()

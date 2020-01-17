@@ -1,6 +1,5 @@
 import os
 import time
-import keyboard
 from getpass import getpass
 from tqdm import tqdm
 
@@ -8,6 +7,7 @@ from .Cliente import Clientes
 from .Empleados import Empleados
 from .Compra import Compras
 from .Ventas import VentaProductos
+
 from .Factura import factura
 
 
@@ -15,8 +15,8 @@ def loggin(func):
     def verificar(self,Obj):
         if Obj.validar(input('Ingrese su Usuario: ').title(),getpass('Ingrese contraseña: ')) or Obj.getcargo is not None:
             print('Welcome at the platform')
-            #for i in tqdm(range(10)):
-            #   time.sleep(2)
+            for i in tqdm(range(10),mininterval=0.1):
+               time.sleep(2)
             func(self,Obj)
             return True
         else:
@@ -31,17 +31,19 @@ def loggin(func):
 class Empresa():
 
   def __init__(self, nombreE):
+
     self.Nombre = nombreE
     self.ObjetoCompra = Compras()
     self.ObjetoVenta = VentaProductos()
     self.objCliente = Clientes()
     self.ojPersonal=Empleados()
-
-
+ 
     "16DA:BN25_27"
+
 
  # ----------------------------Clientes--------------------------
   def Moduloclientes(self):
+
     opcionesCliente={
         '1':self.objCliente.Agregar_Cliente,
         '2':self.objCliente.Modificar_Cliente,
@@ -69,7 +71,7 @@ class Empresa():
       
       opcionescompra={
         '1':self.ObjetoCompra.AgregarCompra,
-        '2':self.ObjetoCompra.VerCompra,
+        '2':self.ObjetoCompra.Product_Fecha,
         '3':self.ValidarCargoMenu
     }
       while True: 
@@ -78,26 +80,38 @@ class Empresa():
             time.sleep(1)
             os.system('cls')             
             break
+      
       re=opcionescompra.get(respuesta)
-      if re is not  None:
+      if respuesta =='1':
+          return re()
+      elif respuesta == '2':
+          return re(int(input('Ingresa la Opcion que deseas visualizar\n Buscar Producto por fecha\n Buscar Producto por su Nombre\n Buscar: ')))
+      elif re is not  None:
           re()
       return self.ValidarCargoMenu()       
  # ----------------------------Ventas-------------------------------
 
-  def ModuloVentas(self):
+  def ModuloVentas(self,Producto):
       while True:
-          iteraciones=int(input(f'Cuatos productos adquirio en nuestra Tienda estimado {self.objCliente.get_Nombre}: '))
-          intentos=0
-          while iteraciones >= intentos:
-            print('Ingrese el Producto N°',intentos+1)
-            respuesta=self.ObjetoVenta.AgregarVenta( input('Producto a Buscar: '), input('ingrese la cantiad: '))    
-            if respuesta is True:
-               os.system('cls')
-               intentos+=1  
-          consultar=input('Desea Genara una factura a la compra: ')
-          if consultar in ('Si','si','s','S'):
-              self.__ModuloFactura()
-          break  
+          if self.ojPersonal.getcargo =='ADMINISTRADOR':
+            respuesta = input('Seleccione una Opcion\t\n1) Visualizar Venta\n2) Exportar Ventas \n3) regresar: ')
+          elif  self.ojPersonal.getcargo =='Cajero':
+              respuesta = input('Seleccione una Opcion\t\n1) Realizar Venta\n2) Buscar Venta \n3) regresar: ')
+              if respuesta =='1':
+                  if self.objCliente.Buscar_Cliente(input('Ingrese su Codigo o Nombre: ')):
+                      iteraciones=int(input(f'Cuatos productos adquirio en nuestra Tienda estimado {self.objCliente.get_Nombre}: '))
+                      intentos=1
+                      while iteraciones >= intentos:
+                        print('Ingrese el Producto N°',intentos)
+                        respuesta=self.ObjetoVenta.AgregarVenta( input('Producto a Buscar: '), input('ingrese la cantiad: '))    
+                        if respuesta is True:
+                           os.system('cls')
+                           intentos+=1  
+                      consultar=input('Desea Genara una factura a la compra: ')
+                      if consultar in ('Si','si','s','S'):
+                          self.__ModuloFactura()
+                          time.sleep(3)
+                      break  
       self.menuAdministrador()
 
  # ----------------------------Factura-------------------------------
@@ -111,7 +125,6 @@ class Empresa():
             ObjFactura.getCabecera('Generico')
      else:
          ObjFactura.generarFactura(self.Nombre,self.objCliente.get_Nombre,self.objCliente.get_Apellido,self.objCliente.get_Codigo,self.ObjetoVenta._Cesta_Venta)
-
 
  # ----------------------------Validacion Reguistro--------------------
   @loggin
@@ -130,11 +143,12 @@ class Empresa():
             self.MenuOpciones(self.menuEmpleado())
        return False
 
-
  # -----------------------------Menus de Roles a Desempeñar en el sistema----
 
  # ----------------------------Empleados------------------------------------.
   def menuEmpleado(self):
+        print('''Modulo Disponibles.''')
+        print('''////////////////////.''')
         print('''**********> 1)Clientes''')
         print('''**********> 2)Ventas''')
         return input('Dijite una Opcion a realizar: ')
@@ -210,4 +224,3 @@ class Empresa():
          print('*'*100)
       except ValueError  as e:
           print('Valor ingreado erroneo')
- 

@@ -1,8 +1,6 @@
 import random
-from .config import config
-from .config.archivos import Directorio
-
-# from Modulo.Persona import Persona
+from config import config
+from config.archivos import Directorio,CargarDatos
 
 class Clientes:
 
@@ -10,20 +8,16 @@ class Clientes:
 	__clientes = []
 
 	def __init__(self):
-		# Persona.__init__(self)
 		self.__nombre = None
 		self.__apellido = None
 		self.set_Codigo = None
 
 	def __repr__(self):
 		return f" Cliente {self.get_Nombre} con Codigo:{self.get_Codigo}"
-
-	# retorna  una lista diccionaro de Clientes.
+	# retorna  una lista diccionario de Clientes.
 	@property
 	def getLista_clientes(self):
-		if len(self.__clientes) == 0:
-			return self.__CargarClientes()
-		return self.__clientes
+		return list(CargarDatos(Clientes.__name__))
 
 	# nombre del Cliente
 	@property
@@ -56,28 +50,6 @@ class Clientes:
 		with open(str(Directorio())+'Clientes', 'a') as archivo:
 			archivo.write(f'Nombre:{cliente} Apellido: Codigo:{str(codigo)}\n')
 
-	@staticmethod
-	def __CargarClientes():
-		'''Se crea una lista con diccionarios del archivo txt en el directorio \\base .'''
-		lista1 = []
-		with open(Directorio()+'Clientes', 'r') as listadeclientes:
-			contenedor = listadeclientes.read().split()
-			while len (contenedor)> 3:
-				tem=contenedor[:3]
-				lista1.append(tem)
-				contenedor=contenedor[3:]
-			lista1.append(contenedor)
-			contenedor=[]
-			for i in lista1:
-				for x in range(len(i)):
-					Clientes.__clientes.append(i[x].split(':'))
-					if len(Clientes.__clientes) == 3:
-						contenedor.append(Clientes.__clientes)  # N° Elementos
-						Clientes.__clientes = []  # 0
-			for i in contenedor:
-				Clientes.__clientes.append(dict(i))
-			return Clientes.__clientes
-
 	# Metodos de Instancia
 	def Agregar_Cliente(self):
 		try:
@@ -94,7 +66,7 @@ class Clientes:
 				print("Cliente: {0} no creado por que ya existe.".format(
 					cliente))
 				config.logging.critical(
-					'Proceso no realizado,Cliente existente')
+					f'Proceso no realizado,Cliente {self.get_Nombre} existente')
 		finally:
 			config.logging.info('Proceso  finalizado.')
 
@@ -134,6 +106,7 @@ class Clientes:
 					print(f"Los cambios para el cliente {cliente} fueron cancelados.")
 
 	def Buscar_Cliente(self, Buscar):
+		'Se busca un cliente por codigo o nombre si el valor a buscar existe return true y son asigando los atributos correspondientes'
 		for i in self.getLista_clientes:
 			if Buscar in i['Codigo'] or Buscar in i['Nombre']:
 				self.set_Nombre = i['Nombre']
@@ -145,11 +118,13 @@ class Clientes:
 
 	def Ver_Clientes(self):
 		print('N° Clientes: ', len(self.getLista_clientes))
-		if len(self.getLista_clientes) >= 1:
-			for i in self.getLista_clientes:
-				print(f"Cliente:{i['Nombre']} Apellido:{i['Apellido']} Codigo:{i['Codigo']}")
+		for i in self.getLista_clientes:
+			print(f"Cliente:{i['Nombre']} Apellido:{i['Apellido']} Codigo:{i['Codigo']}")
 
 	def validar(self):
 		if self.get_Codigo is not None and self.get_Nombre is not None:
 			return True
 		return False
+
+cliente=Clientes()
+cliente.Ver_Clientes()

@@ -48,7 +48,6 @@ class Empleados:
         self.__Cargo=cargo
     
     def _BuscarUsuario (self,nombre):
-        print('valor a retornar al ejecutar esto :', nombre)
         for x in self.__Lusuarios:
             if x['Usuario'].find(nombre) != -1:
                 return x
@@ -70,7 +69,7 @@ class Empleados:
     
     def validar(self,usuario,contrasena):
         i=self._BuscarUsuario(usuario)
-        if type(i) is dict:
+        if usuario==i['Usuario'] and contrasena == str(i['contra']):
             self.SetUsuario=i['Usuario']
             self.SetPassword=str(i['contra'])
             self.SetCargo=i['Cargo']

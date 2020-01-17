@@ -1,4 +1,5 @@
 import os
+
 __nuevo= os.getcwd().rstrip(' \Modulo')
 
 def Directorio():
@@ -13,3 +14,10 @@ def crearArchivo(nombre):
                 archivo.write('s')
         print('archivo creado bye')
 
+def CargarDatos(_file):
+        __cestaCompra=[]
+        with open ( Directorio()+ _file,'r') as File:
+                p=[i.split() for i in File.readlines()]
+                for x in range(len(p)):
+                        __cestaCompra.append({key:value  for( key, value) in [ i.split(':') for i in p[x]] })
+                return  __cestaCompra
